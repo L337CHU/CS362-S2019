@@ -642,6 +642,24 @@ int getCost(int cardNumber)
 	
   return -1;
 }
+/* 
+Assignment 2 asks to refactor 5 cards
+5 chosen cards will smith, adventurer, village, great hall, council room
+*/
+//smithy refactor
+int smithyRef(int handPos, struct gameState *state){
+      int i;
+      int currentPlayer = whoseTurn(state);
+      //+3 Cards
+      for (i = 0; i < 3; i++)	{
+	      drawCard(currentPlayer, state);
+	    }
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+
+}
 
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
@@ -661,7 +679,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   if (nextPlayer > (state->numPlayers - 1)){
     nextPlayer = 0;
   }
-  
+
+
 	
   //uses switch to select card and perform actions
   switch( card ) 
@@ -829,6 +848,9 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case smithy:
+      return smithyRef(handPos, state);
+
+    /*
       //+3 Cards
       for (i = 0; i < 3; i++)
 	{
@@ -837,7 +859,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 			
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+      return 0;*/
 		
     case village:
       //+1 Card
