@@ -1,0 +1,47 @@
+unittest1.c
+Unit test on smithyRef
+unit test1 failedFile 'unittest1.c'
+Lines executed:86.67% of 15
+unittest1.c:creating 'unittest1.c.gcov'
+
+unittest2c
+Unit test on villageRef
+unit test2 passed 
+File 'unittest2.c'
+Lines executed:93.33% of 15
+unittest2.c:creating 'unittest2.c.gcov'
+
+unittest3.c
+unit test passFile 'unittest3.c'
+Lines executed:92.86% of 14
+unittest3.c:creating 'unittest3.c.gcov'
+
+unittest4.c
+unit test passedFile 'unittest4.c'
+Lines executed:92.86% of 14
+unittest4.c:creating 'unittest4.c.gcov'
+
+cardtest1.c
+yay lets test smithy
+test passedFile 'cardtest1.c'
+Lines executed:92.86% of 14
+cardtest1.c:creating 'cardtest1.c.gcov'
+
+cardtest2.c
+yay lets test adventurer 
+test passedFile 'cardtest2.c'
+Lines executed:92.86% of 14
+cardtest2.c:creating 'cardtest2.c.gcov'
+
+cardtest3.c
+lets test steward 
+56test passedFile 'cardtest3.c'
+Lines executed:93.75% of 16
+cardtest3.c:creating 'cardtest3.c.gcov'
+
+cardtest4.c
+lets test salvager 
+12test passedFile 'cardtest4.c'
+Lines executed:93.75% of 16
+cardtest4.c:creating 'cardtest4.c.gcov'
+
