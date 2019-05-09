@@ -6,13 +6,27 @@
 char inputChar()
 {
     // TODO: rewrite this function
-    return ' ';
+    
+    //random number between range
+    int ranNum = rand() % 126;
+    char numRepresentation = ranNum;
+    return numRepresentation;
 }
 
 char *inputString()
 {
     // TODO: rewrite this function
-    return "";
+    char array[] = "erst";
+    char *randomString = malloc(sizeof(char) * 6);
+    for (int i=0; i < 5; i++){
+      int index = rand() % 5;
+      randomString[i] = array[index];
+    }
+    //append '/0'
+    randomString[6] = '/0';
+
+
+    return randomString;
 }
 
 void testme()
