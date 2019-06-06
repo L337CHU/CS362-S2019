@@ -95,6 +95,29 @@ public class randomTest extends TestCase {
         }
 
     }
+    public void testPath(){
+        String [] validPaths = {"/path", "/Diff", "/DiffTwo", "/path/pathTwo", "/path/path/path"};
+
+        //no parameters are passed to UrlValidator so defaulted to DEFAULT_SCHEMES in UrlValidator
+        UrlValidator urlVal = new UrlValidator();
+
+        //test w/out path using default scheme
+        assertTrue(urlVal.isValid("https://www.google.com"));
+
+        //test local url, then w/ allowlocal method
+        assertFalse(urlVal.isValid("https://localhost:80"));
+        urlVal = new UrlValidator(UrlValidator.ALLOW_LOCAL_URLS);
+        assertTrue(urlVal.isValid("https://localhost:80"));
+
+        //combinedURL
+        int random = (int)(Math.random() * 5 + 0);
+        //System.out.println(random);
+        String combine = "https://www.google.com" + validPaths[random];
+        String combineTwo = "https://localhost:80" + validPaths[random];
+        assertTrue(urlVal.isValid(combine));
+        assertTrue(urlVal.isValid(combineTwo));
+
+    }
 
 
 }
