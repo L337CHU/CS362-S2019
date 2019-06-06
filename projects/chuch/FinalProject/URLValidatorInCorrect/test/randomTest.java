@@ -119,6 +119,47 @@ public class randomTest extends TestCase {
 
     }
 
+    public void testFinal() {
+        UrlValidator urlVal = new UrlValidator(UrlValidator.NO_FRAGMENTS);
 
+        //set example query and test to see if its valid
+        String exQuery = "?test=number&example=number";
+        assertTrue(urlVal.isValidQuery(exQuery));
+
+        //test known passed tests
+        String correctUrl = "https://www.google.com:80/path/";
+        assertTrue(urlVal.isValid(correctUrl));
+
+        //add with query
+        String combinedUrl = correctUrl + exQuery;
+        assertTrue(urlVal.isValid(combinedUrl));
+
+        //check permutations
+        String[] validPaths = {"/path/", "/Diff/", "/DiffTwo/"};
+        String[] validPorts = {":80",":32562",":45802"};
+        String[] correctSchemes = {"http://", "https://", "ftp://"};
+        String[] common = {"www.google.com", "www.yahoo.com", "www.cnn.com"};
+
+        //The only correct combination of componenets is schemes + host + port + query
+        int random = (int)(Math.random() * 3 + 0);
+        String permOne = correctSchemes[random] + common[random] + validPorts[random] + validPaths[random] + exQuery ;
+        assertTrue(urlVal.isValid(permOne));
+
+        String permTwo = common[random] +correctSchemes[random]+ validPorts[random] + validPaths[random] + exQuery;
+        assertFalse(urlVal.isValid(permTwo));
+
+        String permThree = validPorts[random] + validPaths[random] + correctSchemes[random] + common[random] + exQuery;
+        assertFalse(urlVal.isValid(permThree));
+
+        String permFour = validPaths[random] +correctSchemes[random] + common[random] + exQuery + validPorts[random];
+        assertFalse(urlVal.isValid(permFour));
+
+        String permFive = correctSchemes[random] + validPorts[random] + exQuery + common[random] + validPaths[random];
+        assertFalse(urlVal.isValid(permFive));
+
+
+
+
+    }
 }
 
