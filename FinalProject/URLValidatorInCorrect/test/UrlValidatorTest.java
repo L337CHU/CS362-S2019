@@ -498,6 +498,52 @@ protected void setUp() {
        assertTrue(validator.isValid("http://example.com/serach?address=Main+Avenue"));
    }
 
+   /**
+    * 
+    * 
+    * Unit Tests
+    * Written by Mariessa
+    * Validated by Michaela
+    * 
+    */
+   //Test that a null value returns false
+   public void testValueNull() {
+	   UrlValidator validator = new UrlValidator();
+	   assertFalse(validator.isValid(null));
+   }
+   //Test that a valid component that it is by itself will still return false (invalid url)
+   public void testValidComponent() {
+	   UrlValidator validator = new UrlValidator();
+	   assertFalse(validator.isValid("http:"));
+   }
+   //Test that an ending component by itself returns false
+   public void testValidComponent2() {
+	   UrlValidator validator = new UrlValidator();
+	   assertFalse(validator.isValid("/filedump"));
+   }
+   //Test a full string that should work out positive
+   public void testPositive() {
+	   UrlValidator validator = new UrlValidator();
+	   assertTrue(validator.isValid("http://go.com/t123"));
+   }
+   //Test that this fails when out of order
+   public void testOutofOrder() {
+	   UrlValidator validator = new UrlValidator();
+	   assertFalse(validator.isValid("/t123http://go.com"));
+   }
+   //test that this is a positive return on a file path that should be correct
+   public void testPositiveServerPath() {
+	   UrlValidator validator = new UrlValidator();
+	   assertTrue(validator.isValid("255.255.255.255:80"));
+	   
+   }
+   //test that this is a negative return on a file path that should be incorrect
+   public void testNegativeServerPath() {
+	   UrlValidator validator = new UrlValidator();
+	   assertFalse(validator.isValid("255505.25550555.255556855.24545454555:859899556665650"));
+	   
+   }
+   
    //-------------------- Test data for creating a composite URL
    /**
     * The data given below approximates the 4 parts of a URL
