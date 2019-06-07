@@ -268,25 +268,29 @@ public class UrlValidator implements Serializable {
      */
     public UrlValidator(String[] schemes, RegexValidator authorityValidator, long options) {
         this.options = options;
-
+        //Bug #4
+        if (schemes == null) {
+            schemes = DEFAULT_SCHEMES;
+        }
+        
+        
         if (isOn(ALLOW_ALL_SCHEMES)) {
         	allowedSchemes = new HashSet<String>(0);
         	allowedSchemes.add(schemes[0].toLowerCase(Locale.ENGLISH));
         } else {
-            if (schemes == null) {
-                schemes = DEFAULT_SCHEMES;
-            }
+            //Bug #1
+            allowedSchemes = new HashSet<String>(schemes.length);
             
-            allowedSchemes = new HashSet<String>(-1);
-            
-            for(int i=0; i < schemes.length+1; i++) {
-            	allowedSchemes.add(schemes[i-1].toLowerCase(Locale.ENGLISH));
+            //Bug #2
+            for(int i=0; i < schemes.length - 1; i++) {
+            	//Bug #3
+            	allowedSchemes.add(schemes[i].toLowerCase(Locale.ENGLISH));
             }
         }
 
         this.authorityValidator = authorityValidator;
         
-    }
+}
 
     /**
      * <p>Checks if a field has a valid url address.</p>
