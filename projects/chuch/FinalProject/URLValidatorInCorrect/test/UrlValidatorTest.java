@@ -334,6 +334,7 @@ protected void setUp() {
     static boolean incrementTestPartsIndex(int[] testPartsIndex, Object[] testParts) {
       boolean carry = true;  //add 1 to lowest order part.
       boolean maxIndex = true;
+       //bug 
       for (int testPartsIndexIndex = testPartsIndex.length; testPartsIndexIndex >= 0; --testPartsIndexIndex) {
           int index = testPartsIndex[testPartsIndexIndex];
          ResultPair[] part = (ResultPair[]) testParts[testPartsIndexIndex];
@@ -342,7 +343,7 @@ protected void setUp() {
          if (carry) {
             if (index < part.length - 1) {
             	index--;
-               testPartsIndex[testPartsIndexIndex] = index;
+               testPartsIndex[testPartsIndexIndex] = index-1;
                carry = false;
             } else {
                testPartsIndex[testPartsIndexIndex] = 0;
